@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Course;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CourseFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Course::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name'=>$this->faker->name(),
+            'description'=>$this->faker->paragraph(2),
+            'price'=>$this->faker->numberBetween($min = 12, $max = 100),
+            'user'=>User::factory(1)->create()->first(),
+        ];
+    }
+}
